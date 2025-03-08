@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block content %}
+<main class="profile-page layout layout--3">
+   <div class="container">
+     <!-- Topics Start -->
+      {% include "base/topics_component.html" %}
+     <!-- Topics End -->
+     <!-- Room List Start -->
+     <div class="roomList">
+      <div class="room__topLeft">
+  <a href="{{request.META.HTTP_REFERER}}">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+    >
+      <title>arrow-left</title>
+      <path
+        d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z"
+      ></path>
+    </svg>
+  </a>
+  <h3>Back</h3>
+</div>
+<div class="profile">
+  <div class="profile__avatar">
+    <div class="avatar avatar--large active">
+      <img src="{{user.avatar.url}}" />
+    </div>
+  </div>
+  <div class="profile__info">
+    <h3>{{user.full_name}}</h3>
+    <p>@{{user.username}}</p>
+    {% if request.user == user %}
+    <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+    {% endif %}
+  </div>
+  <div class="profile__about">
+    <h3>About</h3>
+    <p>
+      {{user.bio}}
+    </p>
+  </div>
+</div>
+
+       {% include "base/feed_component.html" %}
+       
+       <div class="roomList__header">
+         <div>
+           <h2>Study Rooms Hosted by {{user.full_name}}</a>
+           </h2>
+         </div>
+       </div>
+       {% include "base/feed_component.html" %}
+     </div>
+     <!-- Room List End -->
+     <!-- Activities Start -->
+     {% include "base/activity_component.html" %}
+     <!-- Activities End -->
+   </div>
+ </main>
+ 
+ {% endblock content %}
+
+ {% comment %}  
+
+
+{% extends "base.html" %} {% block content %}
+
+<style>
+  .profile-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 10px;
+  }
+</style>
+
+<div class="profile-container">
+  <div>{% include "base/topics_component.html" %}</div>
+  <div>
+    <h1>{{user.username}}</h1>
+    {% include "base/feed_component.html" %}
+  </div>
+  <div>{% include "base/activity_component.html" %}</div>
+</div>
+{% endblock content %}
+
+
+{% endcomment %}
