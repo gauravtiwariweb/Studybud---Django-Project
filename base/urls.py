@@ -23,6 +23,7 @@ urlpatterns = [
     path('update-user/',views.updateUser,name='update-user'),
     path('browse-topics/',views.topicsPage,name='topics'),
     path('browse-activities/',views.activitiesPage,name='activities'),
+    path('delete-user/',views.deleteUser,name='delete-user'),
     
 ]
 

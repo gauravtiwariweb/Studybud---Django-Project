@@ -29,7 +29,7 @@ class Topic(models.Model):
         return self.name
 
 class Room(models.Model):
-    host = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    host = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     
     # topic = models.OneToOneField("Topic", on_delete=models.SET_NULL) # SET_NULL will set the topic field to NULL in database if Parent topic is deleted or topic gets deleted from Topic Model
     # base.Room.topic: (fields.E320) Field specifies on_delete=SET_NULL, but cannot be null.

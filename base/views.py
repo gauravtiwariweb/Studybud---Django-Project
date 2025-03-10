@@ -230,6 +230,8 @@ def loginView(request):
             messages.error(request,"Check Username OR Password")
             
     return render(request,"base/login_register.html",{"page":page})
+
+
 @login_required(login_url='login')
 def logoutUser(request):
     logout(request)
@@ -266,6 +268,33 @@ def deleteRoom(request , pk):
         return redirect('home')
     return render(request,'base/delete.html',{'obj':room})
 
+@login_required
+def deleteUser(request):
+    user=request.user
+    obj=f"Your Account - {user.username}"
+    if request.method == 'POST':
+            User.objects.get(id=user.id).delete()
+            return redirect('home')
+    else :
+        return render(request,'base/delete.html',{'obj':obj})
+
+@login_required(login_url='login')
+def updateUser(request):
+    user=request.user
+    form=UserForm(instance=user)
+    
+    
+    if request.method == 'POST':
+        # form=UserForm(request.POST,instance=user)
+        form=UserForm(request.POST,request.FILES,instance=user)
+        # we need to add 'request.FILES' so that it can process the file which we get and send the file to the database
+        
+        if form.is_valid():
+            form.save()
+            return redirect('profile', pk=user.id)
+    
+    return render(request,'base/update_user.html',{'form':form})
+
 @login_required(login_url='login')
 def deleteMessage(request , pk):
     message=Message.objects.get(id=pk)
@@ -295,22 +324,7 @@ def editMessage(request, pk):
             return redirect('home')
     return render(request , 'base/update_message.html' ,{'form':form } )
 
-@login_required(login_url='login')
-def updateUser(request):
-    user=request.user
-    form=UserForm(instance=user)
-    
-    
-    if request.method == 'POST':
-        # form=UserForm(request.POST,instance=user)
-        form=UserForm(request.POST,request.FILES,instance=user)
-        # we need to add 'request.FILES' so that it can process the file which we get and send the file to the database
-        
-        if form.is_valid():
-            form.save()
-            return redirect('profile', pk=user.id)
-    
-    return render(request,'base/update_user.html',{'form':form})
+
 
 
 def topicsPage(request):
