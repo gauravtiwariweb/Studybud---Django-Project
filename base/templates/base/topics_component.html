@@ -17,6 +17,8 @@
     </li>
     {% endfor %}
   </ul>
+
+  {% if topics.count > 5 %}
   <a class="btn btn--link" href="{% url 'topics' %}">
     More
     <svg
@@ -30,6 +32,7 @@
       <path d="M16 21l-13-13h-3l16 16 16-16h-3l-13 13z"></path>
     </svg>
   </a>
+  {% endif %}
 </div>
 
 {% comment %}
