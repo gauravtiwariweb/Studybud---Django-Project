@@ -6,7 +6,7 @@
     {% include "base/topics_component.html" %}
     <!-- Topics End -->
     <!-- Room List Start -->
-    <div class="roomList">
+    <div class="roomList scroll ">
       <div class="mobile-menu">
         <form class="header__search" action='{% url 'home' %}?q={{topic.name}}'>
           <label>
@@ -30,7 +30,7 @@
           <a class="btn btn--main btn--pill" href="{% url 'activities' %}">Recent Activities</a>
         </div>
       </div>
-      <div class="roomList__header">
+      <div class="roomList__header ">
         <div>
           <h2>Study Room</h2>
           <p>{{rooms_count}} Rooms available</p>

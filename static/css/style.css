@@ -621,6 +621,7 @@ a {
 =>  Room List
 ================================*/
 
+
 .roomList__header {
   display: flex;
   justify-content: space-between;
@@ -1165,4 +1166,28 @@ a {
   font-weight: 500;
   color: var(--color-main);
   font-weight: 1.4rem;
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++  change made  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/*==============================
+=>  Scroll
+================================*/
+
+.scroll {
+  max-height: 86vh;
+  /* or your choice */
+  overflow-y: auto;
+}
+
+/* Chrome, Safari */
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
 }

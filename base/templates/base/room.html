@@ -107,6 +107,9 @@
                 </div>
                 {%if request.user == room.host or request.user == message.user%}
                 <div class="thread__delete">
+                  
+                  </a>
+                  {% if request.user == message.user %}
                   <a href="{% url 'edit-message' message.id %}">
                     <svg
                       enable-background="new 0 0 24 24"
@@ -136,6 +139,8 @@
                     </svg>
                   </a>
 
+                  {% endif %}
+                  
                   <a
                     href="{% url 'delete-message' message.id %}"
                     class="delete"
